@@ -25,6 +25,12 @@ public sealed class Product : EntityBase
         ValidationDomain(name, description, price, stock, image);
     }
 
+    public void Update(string name, string description, decimal price, int stock, string image, int categoryId)
+    {
+        ValidationDomain(name, description, price, stock, image);
+        CategoryId = categoryId;
+    }
+
     public void ValidationDomain(string name, string description, decimal price, int stock, string image)
     {
         DomainExceptionValidation.When(string.IsNullOrEmpty(name),
