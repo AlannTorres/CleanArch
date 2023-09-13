@@ -7,6 +7,7 @@ using CleanArchMvc.Infra.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace CleanArchMvc.Infra.IoC;
 
@@ -25,6 +26,8 @@ public static class DependencyInjection
         services.AddScoped<IProductService, ProductService>();
 
         services.AddAutoMapper(typeof(DomainToDTOMappingProfile));
+
+        services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
         return services;
     }
