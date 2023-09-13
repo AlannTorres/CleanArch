@@ -17,19 +17,19 @@ public class ProductService : IProductService
         _mediator = mediator;
         _mapper = mapper;
     }
-    public async Task<ProductDTO> GetProductCategory(int id)
-    {
-        var productQuery = new GetProductByIdQuery(id);
+    //public async Task<ProductDTO> GetProductCategory(int id)
+    //{
+    //    var productQuery = new GetProductByIdQuery(id);
 
-        if (productQuery == null)
-        {
-            throw new ApplicationException($"Entity could not be loaded.");
-        }
+    //    if (productQuery == null)
+    //    {
+    //        throw new ApplicationException($"Entity could not be loaded.");
+    //    }
 
-        var result = await _mediator.Send(productQuery);
+    //    var result = await _mediator.Send(productQuery);
 
-        return _mapper.Map<ProductDTO>(result);
-    }
+    //    return _mapper.Map<ProductDTO>(result);
+    //}
 
     public async Task<IEnumerable<ProductDTO>> GetProducts()
     {
