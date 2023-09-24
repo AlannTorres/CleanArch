@@ -10,14 +10,10 @@ public sealed class Product : EntityBase
     public int Stock { get; private set; }
     public string Image { get; private set; }
 
-    public int CategoryId { get; set; }
-    public Category Category { get; set; }
-
     public Product(string name, string description, decimal price, int stock, string image)
     {
         ValidationDomain(name, description, price, stock, image);
     }
-
     public Product(int id, string name, string description, decimal price, int stock, string image)
     {
         DomainExceptionValidation.When(id < 0, "Invalid Id value");
@@ -58,4 +54,7 @@ public sealed class Product : EntityBase
         Stock = stock;
         Image = image;
     }
+
+    public int CategoryId { get; set; }
+    public Category Category { get; set; }
 }
