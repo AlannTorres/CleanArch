@@ -16,9 +16,7 @@ public class CategoryRepository : ICategoryRepository
 
     public async Task<Category> GetByIdAsync(int id)
     {
-#pragma warning disable CS8603 // Possível retorno de referência nula.
         return await _categoryContext.Categories.FindAsync(id);
-#pragma warning restore CS8603 // Possível retorno de referência nula.
     }
 
     public async Task<IEnumerable<Category>> GetCategoriesAsync()

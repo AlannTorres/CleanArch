@@ -16,18 +16,8 @@ public class ProductRepository : IProductRespository
 
     public async Task<Product> GetByIdAsync(int id)
     {
-        //return await _productContext.Products.FindAsync(id);
-#pragma warning disable CS8603 // Possível retorno de referência nula.
-        return await _productContext.Products.Include(x => x.Category)
-            .SingleOrDefaultAsync(x => x.Id == id);
-#pragma warning restore CS8603 // Possível retorno de referência nula.
+        return await _productContext.Products.Include(x => x.Category).SingleOrDefaultAsync(x => x.Id == id);
     }
-
-    //public async Task<Product> GetProductCategoryAsync(int id)
-    //{
-    //    return await _productContext.Products.Include(x => x.Category)
-    //        .SingleOrDefaultAsync(x => x.Id == id);
-    //}
 
     public async Task<IEnumerable<Product>> GetProductsAsync()
     {

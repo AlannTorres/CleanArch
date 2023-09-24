@@ -21,9 +21,7 @@ public class CategoriesController : Controller
     }
 
     [HttpGet]
-#pragma warning disable CS1998 // O método assíncrono não possui operadores 'await' e será executado de forma síncrona
     public async Task<IActionResult> CreateCategory()
-#pragma warning restore CS1998 // O método assíncrono não possui operadores 'await' e será executado de forma síncrona
     {
         return View();
     }
