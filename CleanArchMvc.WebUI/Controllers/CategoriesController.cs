@@ -1,9 +1,11 @@
 ﻿using CleanArchMvc.Application.DTOs;
 using CleanArchMvc.Application.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CleanArchMvc.WebUI.Controllers;
 
+[Authorize]
 public class CategoriesController : Controller
 {
     private readonly ICategoryService _categoryService;
@@ -20,10 +22,23 @@ public class CategoriesController : Controller
         return View(categories);
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpGet]
     public async Task<IActionResult> CreateCategory()
     {
         return View();
+    }
+
+    [Authorize(Roles = "Admin")]
+    [HttpPost]
+    public async Task<IActionResult> CreateCategory(CategoryDTO categoryDTO)
+    {
+        if (ModelState.IsValid)
+        {
+            await _categoryService.Add(categoryDTO);
+            return RedirectToAction(nameof(IndexCategories));
+        }
+        return View(categoryDTO);
     }
 
     [HttpGet]
@@ -38,17 +53,7 @@ public class CategoriesController : Controller
         return View(categoryDTO);
     }
 
-    [HttpPost]
-    public async Task<IActionResult> CreateCategory(CategoryDTO categoryDTO)
-    {
-        if (ModelState.IsValid)
-        {
-            await _categoryService.Add(categoryDTO);
-            return RedirectToAction(nameof(IndexCategories));
-        }
-        return View(categoryDTO);
-    }
-
+    [Authorize(Roles = "Admin")]
     [HttpGet]
     public async Task<IActionResult> EditCategory(int id)
     {
@@ -61,6 +66,7 @@ public class CategoriesController : Controller
         return View(categoryDTO);
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     public async Task<IActionResult> EditCategory(CategoryDTO categoryDTO)
     {
@@ -73,6 +79,7 @@ public class CategoriesController : Controller
         return View(categoryDTO);
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpGet]
     public async Task<IActionResult> DeleteCategory(int id)
     {
@@ -85,6 +92,7 @@ public class CategoriesController : Controller
         return View(categoryDTO);
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     public async Task<IActionResult> DeleteConfirmedCategory(int id)
     {
