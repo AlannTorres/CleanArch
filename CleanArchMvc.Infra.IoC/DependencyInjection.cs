@@ -27,7 +27,8 @@ public static class DependencyInjection
 
         services.AddAutoMapper(typeof(DomainToDTOMappingProfile));
 
-        services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+        var myhandlers = AppDomain.CurrentDomain.Load("CleanArchMvc.Application");
+        services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(myhandlers));
 
         return services;
     }
