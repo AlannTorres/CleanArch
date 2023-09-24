@@ -11,8 +11,7 @@ public class ProductCreateCommandHandler : IRequestHandler<ProductCreateCommand,
 
     public ProductCreateCommandHandler(IProductRespository productRespository)
     {
-        _productRespository = productRespository ??
-            throw new ArgumentNullException(nameof(productRespository));
+        _productRespository = productRespository;
     }
 
     public async Task<Product> Handle(ProductCreateCommand request, CancellationToken cancellationToken)

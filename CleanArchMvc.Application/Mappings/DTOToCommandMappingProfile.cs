@@ -10,7 +10,6 @@ namespace CleanArchMvc.Application.Mappings
         {
             CreateMap<ProductDTO, ProductCreateCommand>();
             CreateMap<ProductDTO, ProductUpdateCommand>();
-            CreateMap<ProductDTO, ProductRemoveCommand>();
         }
     }
 }

@@ -44,6 +44,6 @@ public class CategoryServices : ICategoryService
     public async Task Remove(int id)
     {
         var categoryEntity = _categoryRepository.GetByIdAsync(id).Result;
-        await _categoryRepository.CreateAsync(categoryEntity);
+        await _categoryRepository.RemoveAsync(categoryEntity);
     }
 }
